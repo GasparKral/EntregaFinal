@@ -1,13 +1,14 @@
 package es.gaspardev.core.cruds.task
 
 import es.gaspardev.core.auxiliars.UseAddress
-import es.gaspardev.core.cruds.Comments.Comment
+import es.gaspardev.core.cruds.comments.Comment
 import es.gaspardev.core.cruds.user.User
 import es.gaspardev.core.enums.TaskPriority
 import es.gaspardev.core.enums.TaskStatus
 import es.gaspardev.core.interfaces.Copyable
 import es.gaspardev.utilities.Utils
 import java.util.Date
+import kotlin.reflect.KProperty1
 
 data class Task(
     val id: String = Utils.generateRandomId(),
@@ -28,5 +29,9 @@ data class Task(
 
     override fun copy(): Task {
         return copy()
+    }
+
+    operator fun <S> get(searchBy: KProperty1<Task, S>): S {
+        return searchBy.get(this)
     }
 }

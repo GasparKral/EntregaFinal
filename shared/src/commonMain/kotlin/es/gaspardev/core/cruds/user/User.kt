@@ -3,10 +3,12 @@ package es.gaspardev.core.cruds.user
 import es.gaspardev.core.enums.CompanyDepartment
 import es.gaspardev.core.enums.UserRoles
 import es.gaspardev.core.enums.UserStatus
+import es.gaspardev.core.interfaces.Copyable
 import es.gaspardev.utilities.Utils
 import java.util.Date
+import kotlin.reflect.KProperty1
 
-data class User (
+data class User(
 
     val id: String = Utils.generateRandomId(),
     var name: String,
@@ -16,4 +18,22 @@ data class User (
     var userAccess: UserRoles,
     val created: Date = Date(),
     var lastModified: Date = Date()
-)
+) : Copyable {
+
+    override fun copy(): User {
+        return User(
+            id = this.id,
+            name = this.name,
+            email = this.email,
+            department = this.department,
+            status = this.status,
+            userAccess = this.userAccess,
+            created = this.created,
+            lastModified = Date()
+        )
+    }
+
+    operator fun <S> get(searchBy: KProperty1<User, S>): S {
+        return searchBy.get(this)
+    }
+}

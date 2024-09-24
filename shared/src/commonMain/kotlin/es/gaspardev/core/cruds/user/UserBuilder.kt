@@ -12,9 +12,9 @@ object UserBuilder : Builder<User> {
     }
 
     override fun build(): User {
-        val tempUser: User = user as User
+        val tempUser: User? = user
         reset()
-        return tempUser
+        return tempUser!!
     }
 
     override fun initialize(initialValue: User?) {

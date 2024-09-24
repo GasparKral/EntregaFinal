@@ -12,9 +12,9 @@ object TaskBuilder : Builder<Task> {
     private var task: Task? = null
 
     override fun build(): Task {
-        val tempTask: Task = task as Task
+        val tempTask: Task? = task
         reset()
-        return tempTask
+        return tempTask!!
     }
 
     override fun reset() {

@@ -1,9 +1,9 @@
 package es.gaspardev.core.cruds.task
 
 import es.gaspardev.core.auxiliars.CareTaker
-import es.gaspardev.core.cruds.Comments.Comment
+import es.gaspardev.core.cruds.comments.Comment
 
-class TaskCareTaker : CareTaker<Task>() {
+class TaskModifier : CareTaker<Task>() {
 
     fun addNewTag(task: Task, tag: String) {
         task.tags.add(tag)

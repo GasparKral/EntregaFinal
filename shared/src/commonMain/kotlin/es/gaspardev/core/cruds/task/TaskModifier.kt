@@ -3,25 +3,34 @@ package es.gaspardev.core.cruds.task
 import es.gaspardev.core.auxiliars.CareTaker
 import es.gaspardev.core.cruds.comments.Comment
 
-class TaskModifier : CareTaker<Task>() {
+object TaskModifier : CareTaker<Task>() {
+
+    private var intance: TaskModifier? = null
+
+    fun getInstance(): TaskModifier {
+        if (intance == null) {
+            intance = TaskModifier
+        }
+        return intance!!
+    }
 
     fun addNewTag(task: Task, tag: String) {
-        task.tags.add(tag)
+        modifyField(task, Task::tags, tag)
         saveState(task)
     }
 
     fun deleteTag(task: Task, tag: String) {
-        task.tags.remove(tag)
+        modifyField(task, Task::tags, tag)
         saveState(task)
     }
 
     fun addNewComment(task: Task, comment: Comment) {
-        task.comments.add(comment)
+        modifyField(task, Task::comments, comment)
         saveState(task)
     }
 
     fun deleteComment(task: Task, comment: Comment) {
-        task.comments.remove(comment)
+        modifyField(task, Task::comments, comment)
         saveState(task)
     }
 }

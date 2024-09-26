@@ -8,7 +8,8 @@ import es.gaspardev.core.enums.TaskStatus
 import es.gaspardev.core.interfaces.Copyable
 import es.gaspardev.utilities.Utils
 import java.util.Date
-import kotlin.reflect.KProperty1
+import kotlin.reflect.KProperty0
+
 
 data class Task(
     val id: String = Utils.generateRandomId(),
@@ -23,15 +24,18 @@ data class Task(
     var priority: TaskPriority,
     var status: TaskStatus,
     var canGuestsSee: Boolean = false,
-    val tags: ArrayList<String> = ArrayList(),
-    val comments: ArrayList<Comment> = ArrayList()
+    var tags: HashSet<String> = HashSet(),
+    var comments: HashSet<Comment> = HashSet()
 ) : Copyable {
 
     override fun copy(): Task {
         return copy()
     }
 
-    operator fun <S> get(searchBy: KProperty1<Task, S>): S {
-        return searchBy.get(this)
+
+    operator fun <T> get(searchBy: KProperty0<T>): T {
+        return searchBy.get()
     }
+
+
 }

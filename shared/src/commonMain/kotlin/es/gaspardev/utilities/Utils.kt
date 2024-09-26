@@ -3,13 +3,12 @@ package es.gaspardev.utilities
 import kotlin.uuid.ExperimentalUuidApi
 
 
-class Utils {
+object Utils {
 
-    companion object{
-        @OptIn(ExperimentalUuidApi::class)
-        fun generateRandomId(): String {
-            return kotlin.uuid.Uuid.random().toString()
-        }
+    @OptIn(ExperimentalUuidApi::class)
+    fun generateRandomId(): String {
+        return kotlin.uuid.Uuid.random().toString()
     }
+
 
 }

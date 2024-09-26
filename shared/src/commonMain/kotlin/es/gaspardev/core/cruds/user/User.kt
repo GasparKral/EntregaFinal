@@ -6,7 +6,7 @@ import es.gaspardev.core.enums.UserStatus
 import es.gaspardev.core.interfaces.Copyable
 import es.gaspardev.utilities.Utils
 import java.util.Date
-import kotlin.reflect.KProperty1
+import kotlin.reflect.KProperty0
 
 data class User(
 
@@ -33,7 +33,8 @@ data class User(
         )
     }
 
-    operator fun <S> get(searchBy: KProperty1<User, S>): S {
-        return searchBy.get(this)
+
+    operator fun <T> get(searchBy: KProperty0<T>): T {
+        return searchBy.get()
     }
 }

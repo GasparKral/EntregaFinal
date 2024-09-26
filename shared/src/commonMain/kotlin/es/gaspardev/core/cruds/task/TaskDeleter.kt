@@ -8,8 +8,8 @@ object TaskDeleter : Deleter<Task> {
 
     private val deletedTask: ArrayList<Task> = arrayListOf()
 
-    fun deleteTask(task: Task) {
-        deletedTask.add(task)
+    override fun delete(value: Task) {
+        deletedTask.add(value)
     }
 
     override fun undo(): Task {
@@ -37,6 +37,6 @@ object TaskDeleter : Deleter<Task> {
     }
 
     private fun <S> getIndexOf(searchBy: KProperty1<Task, S>, searchValue: S): Int {
-        return deletedTask.indexOf(deletedTask.find { it[searchBy] == searchValue })
+        return deletedTask.indexOf(deletedTask.find { searchBy.get(it) == searchValue })
     }
 }

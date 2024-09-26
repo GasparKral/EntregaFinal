@@ -9,6 +9,10 @@ object UserDeleter : Deleter<User> {
 
     private val deletedUsers: ArrayList<User> = arrayListOf()
 
+    override fun delete(value: User) {
+        deletedUsers.add(value)
+    }
+
     override fun undo(): User {
         return deletedUsers.removeLast()
     }
@@ -34,6 +38,6 @@ object UserDeleter : Deleter<User> {
     }
 
     private fun <S> getIndexOf(searchBy: KProperty1<User, S>, searchValue: S): Int {
-        return deletedUsers.indexOf(deletedUsers.find { it[searchBy] == searchValue })
+        return deletedUsers.indexOf(deletedUsers.find { searchBy.get(it) == searchValue })
     }
 }

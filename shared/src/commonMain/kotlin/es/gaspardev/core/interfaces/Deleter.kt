@@ -5,5 +5,5 @@ interface Deleter<T> {
     fun undo(): T
     fun undo(index: Int): T
     fun clear()
-    
+    fun delete(value: T)
 }

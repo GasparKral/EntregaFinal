@@ -1,5 +1,6 @@
 package es.gaspardev.core.cruds.comments
 
+
 import es.gaspardev.core.cruds.user.User
 import es.gaspardev.core.interfaces.Deleter
 import kotlin.reflect.KProperty1
@@ -7,8 +8,8 @@ import kotlin.reflect.KProperty1
 object CommentDeleter : Deleter<Comment> {
     private val deletedComments: ArrayList<Comment> = arrayListOf()
 
-    fun delete(comment: Comment) {
-        deletedComments.add(comment)
+    override fun delete(value: Comment) {
+        deletedComments.add(value)
     }
 
     override fun undo(): Comment {
@@ -32,7 +33,7 @@ object CommentDeleter : Deleter<Comment> {
     }
 
     private fun <S> getIndexOf(searchBy: KProperty1<Comment, S>, searchValue: S): Int {
-        return deletedComments.indexOf(deletedComments.find { it[searchBy] == searchValue })
+        return deletedComments.indexOf(deletedComments.find { searchBy.get(it) == searchValue })
     }
 
 

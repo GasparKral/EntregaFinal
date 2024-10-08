@@ -16,12 +16,12 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm("desktop")
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -79,6 +79,12 @@ android {
     dependencies {
         debugImplementation(compose.uiTooling)
     }
+}
+dependencies {
+    implementation(libs.androidx.constraintlayout)
+    implementation("io.coil-kt.coil3:coil-jvm:3.0.0-alpha09")
+    implementation("io.coil-kt.coil3:coil-compose-jvm:3.0.0-alpha09")
+    implementation(libs.androidx.foundation.desktop)
 }
 
 compose.desktop {

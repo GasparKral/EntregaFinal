@@ -12,6 +12,7 @@ data class User(
 
     val id: String = Utils.generateRandomId(),
     var name: String,
+    var userImage: String? = null,
     var email: String,
     var department: CompanyDepartment? = null,
     var status: UserStatus = UserStatus.UNKNOWN,
@@ -24,6 +25,7 @@ data class User(
         return User(
             id = this.id,
             name = this.name,
+            userImage = this.userImage,
             email = this.email,
             department = this.department,
             status = this.status,

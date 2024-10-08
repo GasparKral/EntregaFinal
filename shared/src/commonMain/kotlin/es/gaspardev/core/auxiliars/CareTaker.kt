@@ -39,7 +39,7 @@ open class CareTaker<T : Copyable> {
      *
      * @return The modified data object.
      */
-    protected fun <E, S : Collection<E>> modifyField(
+    protected fun <E, S : Collection<E>> modifyFieldList(
         data: T,
         field: KMutableProperty1<T, S>,
         newFieldValue: E

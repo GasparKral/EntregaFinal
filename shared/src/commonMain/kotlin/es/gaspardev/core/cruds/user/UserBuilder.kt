@@ -1,5 +1,6 @@
 package es.gaspardev.core.cruds.user
 
+import es.gaspardev.core.enums.CompanyDepartment
 import es.gaspardev.core.enums.UserRoles
 import es.gaspardev.core.interfaces.Builder
 
@@ -27,5 +28,9 @@ object UserBuilder : Builder<User> {
             email = email,
             userAccess = userAccess
         )
+    }
+
+    fun setDepartment(department: CompanyDepartment) {
+        this.user!!.department = department
     }
 }

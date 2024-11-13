@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="app_name">Tasker</string>
-	<string name="new_task_dialog_title">New Task</string>
-	<string name="new_task_dialog_task_name_label">Task Name</string>
-	<string name="new_task_dialog_task_name_placeholder">Your task name here..</string>
-</resources>

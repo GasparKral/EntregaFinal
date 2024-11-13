@@ -1,21 +1,29 @@
 package es.gaspardev.ui.components.task
 
+import es.gaspardev.providers.ThemeProvider
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import es.gaspardev.core.cruds.task.Task
 import es.gaspardev.core.enums.TaskPriority
+import es.gaspardev.ui.components.user.UserNotch
+import java.text.SimpleDateFormat
 
 @Composable
 fun TaskSection(task: Task) {
 
-    val borderColor = when (task.priority) {
+    val accentColor = when (task.priority) {
         TaskPriority.CRITICAL -> Color.hsl(0.0f, 1.0f, 0.30f)
         TaskPriority.HIGH -> Color.Red
         TaskPriority.MEDIUM -> Color.Yellow
@@ -23,7 +31,7 @@ fun TaskSection(task: Task) {
         else -> Color.Gray
     }
 
-    val backGroundColor = when (task.priority) {
+    val softColor = when (task.priority) {
         TaskPriority.CRITICAL -> Color.hsl(0.0f, 1.0f, 0.6f)
         TaskPriority.HIGH -> Color.hsl(0.0f, 1.0f, 0.68f)
         TaskPriority.MEDIUM -> Color.hsl(60.0f, 1.0f, 0.8f)
@@ -32,17 +40,35 @@ fun TaskSection(task: Task) {
     }
 
     Box(
-        modifier = Modifier.fillMaxSize().border(2.dp, borderColor, RoundedCornerShape(24.dp))
-            .background(backGroundColor, RoundedCornerShape(24.dp))
+        modifier = Modifier.fillMaxWidth().border(2.dp, accentColor, MaterialTheme.shapes.medium)
+            .background(ThemeProvider.colors.backgroundVariation).clip(MaterialTheme.shapes.medium)
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(8.dp, 8.dp)
+            modifier = Modifier.fillMaxWidth().padding(ThemeProvider.Padding.SMALL.padding.dp)
         ) {
-            Text(
-                text = task.title as String,
-            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                UserNotch(task.userCreator, measures = Pair(24, 24))
+                Column() {
+
+                    Text(
+                        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp),
+                        text = task.title as String,
+                        color = MaterialTheme.colors.onPrimary
+                    )
+                    Text(
+                        modifier = Modifier.background(softColor, RoundedCornerShape(8.dp)).padding(8.dp, 4.dp),
+                        color = accentColor,
+                        style = TextStyle(fontSize = 10.sp),
+                        text = SimpleDateFormat("dd/MM/YY").format(task.dueDate)
+                    )
+                }
+            }
             Text(
                 text = task.message as String,
+                color = MaterialTheme.colors.onPrimary
             )
         }
     }

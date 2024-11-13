@@ -1,7 +1,7 @@
 package es.gaspardev.core.cruds.user
 
 
-import es.gaspardev.core.enums.CompanyDepartment
+import es.gaspardev.core.auxiliars.dataClass.CompanyDepartment
 import es.gaspardev.core.interfaces.Deleter
 import kotlin.reflect.KProperty1
 

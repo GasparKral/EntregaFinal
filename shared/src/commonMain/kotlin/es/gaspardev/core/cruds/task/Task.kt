@@ -1,6 +1,6 @@
 package es.gaspardev.core.cruds.task
 
-import es.gaspardev.core.auxiliars.UseAddress
+import es.gaspardev.core.auxiliars.seals.UseAddress
 import es.gaspardev.core.cruds.comments.Comment
 import es.gaspardev.core.cruds.user.User
 import es.gaspardev.core.enums.TaskPriority
@@ -20,6 +20,7 @@ data class Task(
     var title: String?,
     var description: String?,
     var message: String?,
+    var initDate: Date?,
     var dueDate: Date?,
     var priority: TaskPriority,
     var status: TaskStatus,

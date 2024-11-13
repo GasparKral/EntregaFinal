@@ -1,10 +1,10 @@
 package es.gaspardev.core.cruds.task
 
-import es.gaspardev.core.auxiliars.UseAddress
+import es.gaspardev.core.auxiliars.seals.UseAddress
 import es.gaspardev.core.cruds.user.User
 import es.gaspardev.core.enums.TaskPriority
 import es.gaspardev.core.enums.TaskStatus
-import es.gaspardev.core.interfaces.Builder;
+import es.gaspardev.core.interfaces.Builder
 import java.util.*
 
 object TaskBuilder : Builder<Task> {
@@ -34,6 +34,7 @@ object TaskBuilder : Builder<Task> {
             title = null,
             description = null,
             message = null,
+            initDate = null,
             dueDate = null,
             priority = TaskPriority.NOT_DEFINED
         )
@@ -48,16 +49,17 @@ object TaskBuilder : Builder<Task> {
     }
 
     fun setDueDate(dueDate: Date) {
-        if (dueDate.before(task?.creationDate)) throw IllegalArgumentException("Invalid due date")
+        if (dueDate.before(
+                Date(
+                    task?.creationDate?.time?.minus((1000 * 60 * 60 * 24)) ?: 0
+                )
+            )
+        ) throw IllegalArgumentException("Invalid due date")
         task?.dueDate = dueDate
     }
 
     fun setPriority(priority: TaskPriority) {
         task?.priority = priority
-    }
-
-    fun setStatus(status: TaskStatus) {
-        task?.status = status
     }
 
     fun setMessage(message: String) {
@@ -72,5 +74,14 @@ object TaskBuilder : Builder<Task> {
         task?.addressFrom = addressFrom
     }
 
+    fun setInitialDate(initialDate: Date) {
+        if (initialDate.before(
+                Date(
+                    task?.creationDate?.time?.minus((1000 * 60 * 60 * 24)) ?: 0
+                )
+            )
+        ) throw IllegalArgumentException("Invalid initial date")
+        task?.initDate = initialDate
+    }
 
 }

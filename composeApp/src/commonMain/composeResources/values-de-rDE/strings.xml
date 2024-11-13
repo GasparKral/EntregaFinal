@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	// UI TEXTS
+	<string name="app_name">Tasker</string>
+	<string name="new_task_dialog_title">Neue Aufgabe</string>
+	<string name="new_task_dialog_task_name_label">Aufgabenname</string>
+	<string name="new_task_dialog_task_name_placeholder">Geben Sie hier den Aufgabennamen ein..</string>
+	<string name="new_task_button">(+) Neue Aufgabe</string>
+	<string name="new_task_dialog_tags_labels">Titel ,Beschreibung ,Nachricht ,Priorität </string>
+
+	// PRIORITY ENUMS
+	<string-array name="priority">
+		<item>Nicht definiert</item>
+		<item>Niedrig</item>
+		<item>Mittel</item>
+		<item>Hoch</item>
+		<item>Kritisch</item>
+	</string-array>
+
+	// SORT BY ENUMS
+	<string-array name="sort_by">
+		<item>Priority</item>
+		<item>Fälligkeitsdatum</item>
+		<item>Erstellungsdatum</item>
+		<item>Status</item>
+	</string-array>
+
+	// STATUS ENUMS
+	<string name="status_pending">Ausstehend</string>
+	<string name="status_in_progress">In Bearbeitung</string>
+	<string name="status_completed">Abgeschlossen</string>
+
+	// DAYS
+	<string-array name="days">
+		<item>Montag</item>
+		<item>Dienstag</item>
+		<item>Mittwoch</item>
+		<item>Donnerstag</item>
+		<item>Freitag</item>
+		<item>Samstag</item>
+		<item>Sonntag</item>
+	</string-array>
+</resources>

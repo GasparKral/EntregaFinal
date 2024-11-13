@@ -17,29 +17,36 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    jvm("desktop") // Target para escritorio
 
     sourceSets {
-        val desktopMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(project(":shared"))
+            }
+        }
 
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
+        val androidMain by getting {
+            dependencies {
+                implementation(compose.preview)
+                implementation(libs.androidx.activity.compose)
+            }
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(projects.shared)
-        }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
+
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutines.swing)
+                implementation(libs.jetbrains.material3)
+                implementation(libs.skiko.awt.runtime.windows.x64.v0815)
+            }
         }
     }
 }
@@ -50,7 +57,7 @@ android {
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].resources.srcDirs("src/commonMain/composeResources")
 
     defaultConfig {
         applicationId = "es.gaspardev"
@@ -76,15 +83,15 @@ android {
     buildFeatures {
         compose = true
     }
-    dependencies {
-        debugImplementation(compose.uiTooling)
-    }
 }
+
 dependencies {
     implementation(libs.androidx.constraintlayout)
-    implementation("io.coil-kt.coil3:coil-jvm:3.0.0-alpha09")
-    implementation("io.coil-kt.coil3:coil-compose-jvm:3.0.0-alpha09")
-    implementation(libs.androidx.foundation.desktop)
+    implementation(libs.coil.jvm)
+    implementation(libs.coil.compose.jvm)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.animation.core.android)
+    implementation(libs.androidx.animation.android)
 }
 
 compose.desktop {

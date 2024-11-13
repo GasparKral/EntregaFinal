@@ -1,49 +1,60 @@
 package es.gaspardev.ui.components.user
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
+import es.gaspardev.providers.ThemeProvider
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.layout.layout
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import es.gaspardev.controllers.LoggedUser
+import androidx.compose.ui.unit.sp
+import es.gaspardev.core.cruds.user.User
 import org.jetbrains.compose.resources.InternalResourceApi
 
 
 @OptIn(InternalResourceApi::class)
-@Preview
+
 @Composable
-fun UserNotch() {
+fun UserNotch(
+    user: User?,
+    measures: Pair<Int, Int>? = null,
+    connectionShow: Boolean = false,
 
-    val user = LoggedUser.user
-
+    ) {
     if (user == null) {
         Text("User not found")
         return
     }
 
     Row(
-        modifier = Modifier.padding(8.dp, 8.dp)
+        modifier = Modifier.padding(8.dp, 0.dp)
     ) {
         UserAvatar(
-            userName = user.name
+            userName = user.name,
+            measures = measures
         )
 
-        ConnectionStateBubble(user.status)
-
+        if (connectionShow) {
+            ConnectionStateBubble(user.status)
+        }
         Column(
-            modifier = Modifier.padding()
+            modifier = Modifier.padding(8.dp, 0.dp),
+            verticalArrangement = Arrangement.spacedBy((-4).dp)
         ) {
-            Text(user.name)
-            Text(user.department.toString())
+            Text(
+                text = user.name,
+                color = ThemeProvider.colors.secondaryHighlight ?: ThemeProvider.colors.secondary,
+            )
+            user.department?.let {
+                Text(
+                    it.key,
+                    style = TextStyle(fontSize = 10.5.sp),
+                    color = ThemeProvider.colors.secondaryHighlight ?: ThemeProvider.colors.secondary,
+                )
+            }
         }
     }
 }
-

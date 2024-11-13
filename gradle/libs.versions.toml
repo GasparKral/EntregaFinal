@@ -15,18 +15,43 @@ androidx-test-junit = "1.2.1"
 coil = "2.7.0"
 coilJvm = "3.0.0-alpha09"
 compose-plugin = "1.6.11"
+jetbrainsMaterial3 = "1.7.0"
 junit = "4.13.2"
 kotlin = "2.0.20"
 kotlinx-coroutines = "1.8.1"
 ktor = "2.3.12"
 logback = "1.5.7"
 foundationDesktop = "1.7.0"
+material3 = "1.4.0-alpha03"
+material3CommonDesktop = "1.0.0-alpha01"
+material3AdaptiveDesktop = "1.0.0-alpha06"
+material3Version = "1.4.0-alpha02"
+runtimeDesktop = "1.7.0"
+skiko = "0.90.1"
+skikoAwtRuntimeWindowsX64 = "0.8.4"
+skikoAwtRuntimeWindowsX64Version = "0.8.15"
+uiAndroid = "1.7.0"
+uiAndroidVersion = "1.7.3"
+fragmentKtx = "1.8.4"
+animationCoreAndroid = "1.7.0"
+animationAndroid = "1.7.0"
+material3Jvmstubs = "1.4.0-alpha03"
+material3Desktop = "1.3.1"
 
 [libraries]
 addcoilmultiplatform-android-debug = { module = "com.alexstyl:addcoilmultiplatform-android-debug", version.ref = "addcoilmultiplatformAndroidDebug" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+androidx-material3-adaptive-desktop = { module = "androidx.compose.material3:material3-adaptive-desktop", version.ref = "material3AdaptiveDesktop" }
+androidx-material3-common-desktop = { module = "androidx.compose.material3:material3-common-desktop", version.ref = "material3CommonDesktop" }
+androidx-material3-v140alpha02 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
+androidx-runtime-desktop = { module = "androidx.compose.runtime:runtime-desktop", version.ref = "runtimeDesktop" }
+androidx-ui-android-v173 = { module = "androidx.compose.ui:ui-android", version.ref = "uiAndroidVersion" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-compose-jvm = { module = "io.coil-kt.coil3:coil-compose-jvm", version.ref = "coilJvm" }
 coil-jvm = { module = "io.coil-kt.coil3:coil-jvm", version.ref = "coilJvm" }
+fragment-ktx = { module = "adroidx.fragment:fragment-ktx" }
+jetbrains-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "jetbrainsMaterial3" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -45,6 +70,17 @@ ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "kto
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
 androidx-foundation-desktop = { group = "androidx.compose.foundation", name = "foundation-desktop", version.ref = "foundationDesktop" }
+androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-animation-core-android = { group = "androidx.compose.animation", name = "animation-core-android", version.ref = "animationCoreAndroid" }
+androidx-animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
+material3 = { module = "org.jetbrains.compose.material3:material3" }
+androidx-material3-jvmstubs = { group = "androidx.compose.material3", name = "material3-jvmstubs", version.ref = "material3Jvmstubs" }
+androidx-material3-desktop = { group = "androidx.compose.material3", name = "material3-desktop", version.ref = "material3Desktop" }
+skiko = { module = "org.jetbrains.skiko:skiko", version.ref = "skiko" }
+skiko-awt-runtime-windows-x64 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64", version.ref = "skikoAwtRuntimeWindowsX64" }
+skiko-awt-runtime-windows-x64-v0815 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64", version.ref = "skikoAwtRuntimeWindowsX64Version" }
+skiko-awt-runtime-windows-x64_x-x-x1 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64/0.6.11" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -36,6 +36,7 @@ object TaskBuilder : Builder<Task> {
             message = null,
             initDate = null,
             dueDate = null,
+            completedDate = null,
             priority = TaskPriority.NOT_DEFINED
         )
     }

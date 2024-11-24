@@ -13,12 +13,12 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm()
-    
+
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation("uk.gibby:surrealdb-kotlin-driver:0.2.0")
         }
     }
 }

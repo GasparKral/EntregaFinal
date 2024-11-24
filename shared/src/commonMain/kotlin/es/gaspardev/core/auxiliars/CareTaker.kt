@@ -24,7 +24,7 @@ open class CareTaker<T : Copyable> {
         return if (mementos.isNotEmpty()) mementos.first().data else null
     }
 
-    protected fun <S> modifyField(data: T, field: KMutableProperty1<T, S>, newFieldValue: S): T {
+    fun <S> modifyField(data: T, field: KMutableProperty1<T, S>, newFieldValue: S): T {
         field.set(data, newFieldValue)
         saveState(data)
         return data

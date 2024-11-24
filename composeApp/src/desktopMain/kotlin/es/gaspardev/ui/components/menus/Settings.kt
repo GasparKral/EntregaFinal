@@ -36,12 +36,10 @@ fun Settings() {
         modifier = Modifier
             .width(126.dp)
             .zIndex(150.0f)
-            .absoluteOffset {
-                IntOffset(
-                    x = AppState.screen.width - (126 + 20),
-                    y = 10
-                )
-            },
+            .absoluteOffset(
+                x = AppState.screen.width - 10.dp,
+                y = 10.dp
+            )
     ) {
 
         StaggerFadeIn(

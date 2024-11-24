@@ -17,11 +17,11 @@ fun main() {
 }
 
 fun startSurrealDB() {
-    val command =
-        listOf("docker", "run", "--rm", "--pull", "always", "-p", "8000:8000", "surrealdb/surrealdb:latest", "start")
+    val command = listOf("docker", "compose", "up")
 
     try {
         val process = ProcessBuilder(command)
+            .directory(File("./server/src/main/resources")) // Cambia el directorio de trabajo
             .redirectOutput(ProcessBuilder.Redirect.INHERIT)
             .redirectError(ProcessBuilder.Redirect.INHERIT)
             .start()

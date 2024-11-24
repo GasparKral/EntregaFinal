@@ -132,7 +132,7 @@ fun NewTaskMenu() {
         DateRangePicker(
             state = dateRange,
             modifier = Modifier.size(
-                (AppState.screen.width / 2 - (ThemeProvider.Padding.LARGE.padding * 2)).dp,
+                (AppState.screen.width / 2 - (ThemeProvider.Padding.LARGE.padding * 2).dp),
                 350.dp
             ),
             showModeToggle = true,

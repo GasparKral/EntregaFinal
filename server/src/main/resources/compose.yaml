@@ -1,0 +1,27 @@
+services:
+  surrealdb:
+
+    entrypoint:
+      - /surreal
+      - start
+      - --user
+      - GASPAR
+      - --pass
+      - Tempo1405
+    image: surrealdb/surrealdb:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - surrealdb:/data
+
+volumes:
+  surrealdb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data
+
+networks:
+  surrealdb:
+    driver: bridge

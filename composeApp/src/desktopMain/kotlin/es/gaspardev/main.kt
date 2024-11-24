@@ -1,22 +1,13 @@
 package es.gaspardev
 
 
-import es.gaspardev.providers.TaskerTheme
-import es.gaspardev.providers.ThemeProvider
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material3.CalendarLocale
-import androidx.compose.material3.DateRangePicker
-import androidx.compose.material3.DateRangePickerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
@@ -32,30 +23,33 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import entregafinal.composeapp.generated.resources.Res
 import entregafinal.composeapp.generated.resources.app_name
-import es.gaspardev.controllers.DataBaseConnection
 import es.gaspardev.pages.Chats
 import es.gaspardev.pages.Dashboard
 import es.gaspardev.pages.Diagram
-import es.gaspardev.providers.*
+import es.gaspardev.pages.Login
+import es.gaspardev.providers.AppState
+import es.gaspardev.providers.LocalizationProvider
+import es.gaspardev.providers.TaskerTheme
+import es.gaspardev.providers.ThemeProvider
 import es.gaspardev.ui.components.menus.Settings
 import es.gaspardev.ui.components.menus.SideBar
 import es.gaspardev.ui.popovers.FloatingDialog
 import org.jetbrains.compose.resources.stringResource
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 fun main() = application {
     val state = rememberWindowState(
-        placement = WindowPlacement.Maximized
+        placement = WindowPlacement.Maximized,
     )
+
+    AppState.updateScreenSize(state.size)
 
     val pages: Map<Int, @Composable () -> Unit> = mapOf(
-        0 to { Dashboard(AppState.platform, AppState.screen) },
-        1 to { Chats() },
-        2 to { Diagram() }
+        0 to { Login() },
+        1 to { Dashboard(AppState.platform) },
+        2 to { Chats() },
+        3 to { Diagram() }
     )
-
-    
 
     Window(
         onCloseRequest = ::exitApplication,

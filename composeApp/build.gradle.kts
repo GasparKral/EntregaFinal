@@ -19,6 +19,7 @@ kotlin {
 
     jvm("desktop") // Target para escritorio
 
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -30,6 +31,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(project(":shared"))
+     
             }
         }
 
@@ -46,6 +48,7 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.swing)
                 implementation(libs.jetbrains.material3)
                 implementation(libs.skiko.awt.runtime.windows.x64.v0815)
+
             }
         }
     }

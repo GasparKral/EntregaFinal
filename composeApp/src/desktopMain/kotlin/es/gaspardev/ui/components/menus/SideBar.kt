@@ -18,7 +18,6 @@ import es.gaspardev.ui.components.user.UserNotch
 @Composable
 fun SideBar() {
 
-
     Box(
         modifier = Modifier.width(350.dp).fillMaxHeight()
     ) {
@@ -58,18 +57,18 @@ fun SideBar() {
             )
             SideBarComponent(
                 text = "Dashboard",
-                onClickAction = { AppState.currentPage = 0 },
-                isSelected = AppState.currentPage == 0
-            )
-            SideBarComponent(
-                text = "Chat",
                 onClickAction = { AppState.currentPage = 1 },
                 isSelected = AppState.currentPage == 1
             )
             SideBarComponent(
-                text = "Diagram",
+                text = "Chat",
                 onClickAction = { AppState.currentPage = 2 },
                 isSelected = AppState.currentPage == 2
+            )
+            SideBarComponent(
+                text = "Diagram",
+                onClickAction = { AppState.currentPage = 3 },
+                isSelected = AppState.currentPage == 3
             )
 
 

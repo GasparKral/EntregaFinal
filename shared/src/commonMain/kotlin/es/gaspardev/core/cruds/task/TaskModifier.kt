@@ -2,17 +2,10 @@ package es.gaspardev.core.cruds.task
 
 import es.gaspardev.core.auxiliars.CareTaker
 import es.gaspardev.core.cruds.comments.Comment
+import es.gaspardev.core.enums.TaskStatus
 
 object TaskModifier : CareTaker<Task>() {
 
-    private var instance: TaskModifier? = null
-
-    fun getInstance(): TaskModifier {
-        if (instance == null) {
-            instance = TaskModifier
-        }
-        return instance!!
-    }
 
     fun addNewTag(task: Task, tag: String) {
         modifyFieldList(task, Task::tags, tag)
@@ -31,6 +24,11 @@ object TaskModifier : CareTaker<Task>() {
 
     fun deleteComment(task: Task, comment: Comment) {
         modifyFieldList(task, Task::comments, comment)
+        saveState(task)
+    }
+
+    fun modifyStatus(task: Task, status: TaskStatus) {
+        modifyField(task, Task::status, status)
         saveState(task)
     }
 }

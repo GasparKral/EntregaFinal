@@ -3,11 +3,18 @@ package es.gaspardev.core.cruds.comments
 import es.gaspardev.core.cruds.user.User
 import es.gaspardev.core.interfaces.Copyable
 import es.gaspardev.utilities.Utils
+import java.awt.TrayIcon.MessageType
 import java.util.Date
 import kotlin.reflect.KProperty0
 
 
-data class Comment(val id: String = Utils.generateRandomId(), val user: User, var text: String, var date: Date) :
+data class Comment(
+    val id: String = Utils.generateRandomId(),
+    val user: User,
+    var text: String,
+    var date: Date,
+    val type: MessageType
+) :
     Copyable {
     override fun copy(): Comment {
         return copy()

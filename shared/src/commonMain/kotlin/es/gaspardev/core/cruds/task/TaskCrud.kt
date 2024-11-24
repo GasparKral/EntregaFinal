@@ -21,9 +21,8 @@ object TaskCrud : CRUD<Task>() {
     }
 
     override fun modify() {
-        val instance = TaskModifier.getInstance()
-        val oldTaskIndex = values.indexOf(instance.getFirstState()!!)
-        values[oldTaskIndex] = instance.getState()!!
+        val oldTaskIndex = values.indexOf(TaskModifier.getState())
+        values[oldTaskIndex] = TaskModifier.getState()!!
     }
 
 }

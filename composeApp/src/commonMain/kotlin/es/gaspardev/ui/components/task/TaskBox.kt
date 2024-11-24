@@ -1,26 +1,26 @@
 package es.gaspardev.ui.components.task
 
-import es.gaspardev.providers.ThemeProvider
-import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import entregafinal.composeapp.generated.resources.Res
 import entregafinal.composeapp.generated.resources.sort_by
 import es.gaspardev.core.cruds.task.Task
 import es.gaspardev.core.enums.SortBy
-import es.gaspardev.core.enums.TaskPriority
+import es.gaspardev.providers.ThemeProvider
 import es.gaspardev.ui.components.generics.SelectionField
 import org.jetbrains.compose.resources.stringArrayResource
-import java.awt.Dimension
 import java.time.Instant
 import java.util.*
 
@@ -28,10 +28,10 @@ import java.util.*
 @Composable
 fun TaskBox(
     tasks: HashSet<Task>,
-    screen: Dimension
 ) {
 
     val (sortBy, setSortBy) = remember { mutableStateOf(SortBy.PRIORITY) }
+    val (columnWidth, setColumnWidth) = remember { mutableStateOf(300) }
 
     fun sortByPriority(task: HashSet<Task>): List<List<Task>> {
         return task.groupBy { it.priority }.values.toList()
@@ -120,7 +120,7 @@ fun TaskBox(
             .fillMaxSize()
             .padding(ThemeProvider.Padding.MEDIUM.padding.dp)
     ) {
-        
+
         Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
             FlowRow(modifier = Modifier.fillMaxWidth()) {
                 SelectionField(
@@ -132,31 +132,57 @@ fun TaskBox(
                 )
             }
             FlowRow(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .onSizeChanged { size ->
+                        setColumnWidth(size.width)
+                    },
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 sortBy(sortBy).forEach { taskList ->
                     FlowColumn(
                         modifier = Modifier
-                            .border(1.dp, ThemeProvider.colors.borders)
                             .let {
                                 when (sortBy.name) {
-                                    "PRIORITY" -> it.width(((screen.width - 300 - ThemeProvider.Padding.LARGE.padding * 2) / 5).dp)
-                                    "TASK_STATUS" -> it.width(((screen.width - 300 - ThemeProvider.Padding.LARGE.padding * 2) / 6).dp)
-                                    else -> it.width(((screen.width - 300 - ThemeProvider.Padding.LARGE.padding * 2) / 3).dp)
+                                    "PRIORITY" -> it.width((columnWidth / 5 - 8 * 4).dp)
+                                    "TASK_STATUS" -> it.width((columnWidth / 6 - 8 * 5).dp)
+                                    else -> it.width((columnWidth / 3 - 8 * 2).dp)
                                 }
                             },
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         when (sortBy.name) {
                             "PRIORITY" -> {
-                                Text(taskList[0].priority.name)
+                                Text(
+                                    text = taskList[0].priority.name,
+                                    color = ThemeProvider.colors.secondary,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                                Divider(
+                                    color = ThemeProvider.colors.accent,
+                                    thickness = 1.dp,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
                             }
 
                             "TASK_STATUS" -> {
-                                Text(taskList[0].status.name)
+                                Text(
+                                    text = taskList[0].status.name,
+                                    color = ThemeProvider.colors.secondary,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                                Divider(
+                                    color = ThemeProvider.colors.accent,
+                                    thickness = 1.dp,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
                             }
                         }
+
                         taskList.forEach { task ->
                             TaskSection(task)
                         }

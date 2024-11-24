@@ -48,8 +48,8 @@ object LightModeColors : Colors {
     override val backgroundVariation: Color = Color(0xFFeeeeee)
     override val borders: Color = Color(0xFFececec)
     override val success: Color = Color(0xFF2AB179)
-    override val error: Color = Color(0xC8133C)
-    override val warning: Color = Color(0xFEA108)
+    override val error: Color = Color(0xFFC8133C)
+    override val warning: Color = Color(0xFFFEA108)
 }
 
 // Definición de colores para el tema oscuro

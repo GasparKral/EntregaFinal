@@ -1,7 +1,8 @@
 package es.gaspardev.ui.popovers
 
-import es.gaspardev.providers.ThemeProvider
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
@@ -11,14 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import entregafinal.composeapp.generated.resources.Res
 import entregafinal.composeapp.generated.resources.close
 import entregafinal.composeapp.generated.resources.closeDark
+import es.gaspardev.providers.ThemeProvider
 import org.jetbrains.compose.resources.painterResource
-import java.awt.Dimension
 import java.awt.Toolkit
 
 
@@ -37,8 +39,11 @@ import java.awt.Toolkit
 fun FloatingDialog(
     visibility: Boolean,
     onCloseRequest: () -> Unit,
-    screen: Dimension = Toolkit.getDefaultToolkit().screenSize,
-    size: Pair<Int, Int> = Pair(screen.width / 2, screen.height / 2 + 350),
+    screen: DpSize = DpSize(
+        Toolkit.getDefaultToolkit().screenSize.width.dp,
+        Toolkit.getDefaultToolkit().screenSize.height.dp
+    ),
+    size: Pair<Dp, Dp> = Pair(screen.width / 2, screen.height / 2 + 350.dp),
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
@@ -64,20 +69,18 @@ fun FloatingDialog(
                 modifier = Modifier // Apply the following modifier to the dialog box
                     .zIndex(250.0f) // Set the z-index of the dialog to ensure it is visible on top of other components
                     .size( // Set the size of the dialog box
-                        size.first.dp,
-                        size.second.dp
+                        size.first,
+                        if (size.second > screen.height) (screen.height - (25 * 2).dp) else size.second
                     )
                     .scrollable(
                         orientation = Orientation.Vertical,
                         enabled = visibility,
                         state = rememberScrollState()
                     )
-                    .offset { // Set the position of the dialog box
-                        IntOffset(
-                            screen.width / 2 - size.first / 2, // Calculate the x position of the dialog
-                            screen.height / 2 - size.second / 2// Calculate the y position of the dialog
-                        )
-                    }
+                    .offset(
+                        screen.width / 2 - size.first / 2,
+                        if (size.second > screen.height) 25.dp else screen.height / 2 - size.second / 2
+                    )
                     .background(
                         ThemeProvider.colors.backgroundVariation,
                         MaterialTheme.shapes.large

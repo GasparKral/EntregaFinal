@@ -1,6 +1,6 @@
 [versions]
 addcoilmultiplatformAndroidDebug = "1.0.0"
-agp = "8.5.2"
+agp = "8.6.1"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
@@ -30,6 +30,7 @@ runtimeDesktop = "1.7.0"
 skiko = "0.90.1"
 skikoAwtRuntimeWindowsX64 = "0.8.4"
 skikoAwtRuntimeWindowsX64Version = "0.8.15"
+surrealdb = "0.2.0"
 uiAndroid = "1.7.0"
 uiAndroidVersion = "1.7.3"
 fragmentKtx = "1.8.4"
@@ -81,6 +82,7 @@ skiko = { module = "org.jetbrains.skiko:skiko", version.ref = "skiko" }
 skiko-awt-runtime-windows-x64 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64", version.ref = "skikoAwtRuntimeWindowsX64" }
 skiko-awt-runtime-windows-x64-v0815 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64", version.ref = "skikoAwtRuntimeWindowsX64Version" }
 skiko-awt-runtime-windows-x64_x-x-x1 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64/0.6.11" }
+surrealdb = { module = "com.surrealdb:surrealdb", version.ref = "surrealdb" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

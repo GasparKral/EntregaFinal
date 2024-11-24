@@ -5,15 +5,15 @@ import es.gaspardev.utilities.Utils
 
 class Chat(
     val chatId: String = Utils.generateRandomId(),
-    val users: Pair<UseAddress, UseAddress>,
-    private val message: HashMap<UseAddress, ChatMessage> = HashMap()
+    val users: Pair<UseAddress.User, UseAddress.User>,
+    private val message: HashMap<ChatMessage, UseAddress> = HashMap()
 ) {
 
     fun addMessage(user: UseAddress, message: ChatMessage) {
-        this.message[user] = message
+        this.message[message] = user
     }
 
     fun getMessage(id: String): ChatMessage? {
-        return message.filter { it.value.id == id }.map { it.value }.firstOrNull()
+        return message.keys.find { it.id == id }
     }
 }

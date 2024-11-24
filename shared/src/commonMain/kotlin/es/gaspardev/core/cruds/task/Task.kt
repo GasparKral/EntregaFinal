@@ -22,6 +22,7 @@ data class Task(
     var message: String?,
     var initDate: Date?,
     var dueDate: Date?,
+    var completedDate: Date?,
     var priority: TaskPriority,
     var status: TaskStatus,
     var canGuestsSee: Boolean = false,
@@ -30,9 +31,25 @@ data class Task(
 ) : Copyable {
 
     override fun copy(): Task {
-        return copy()
+        return Task(
+            id = id,
+            userCreator = userCreator,
+            addressTo = addressTo,
+            addressFrom = addressFrom,
+            creationDate = creationDate,
+            title = title,
+            description = description,
+            message = message,
+            initDate = initDate,
+            dueDate = dueDate,
+            completedDate = completedDate,
+            priority = priority,
+            status = status,
+            canGuestsSee = canGuestsSee,
+            tags = tags,
+            comments = comments
+        )
     }
-
 
     operator fun <T> get(searchBy: KProperty0<T>): T {
         return searchBy.get()
